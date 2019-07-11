@@ -17,13 +17,13 @@ class Untitled(unittest.TestCase):
     def test_untitled(self):
         wd = self.wd
         self.open_home_page(wd)
-        self.login(wd)
+        self.login(wd, "admin", "admin")
 
-    def login(self, wd):
+    def login(self, wd, admin, password):
         wd.find_element_by_id("username").clear()
-        wd.find_element_by_id("username").send_keys("admin")
+        wd.find_element_by_id("username").send_keys(admin)
         wd.find_element_by_name("password").clear()
-        wd.find_element_by_name("password").send_keys("admin")
+        wd.find_element_by_name("password").send_keys(password)
         wd.find_element_by_name("submit").click()
 
     def open_home_page(self, wd):
