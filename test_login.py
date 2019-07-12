@@ -1,27 +1,18 @@
-import unittest
-
-from selenium.webdriver.chrome.webdriver import WebDriver
-
+import pytest
 from Application import Application
 
 
-class Untitled(unittest.TestCase):
-    wd: WebDriver
+@pytest.fixture
+def app(request):
+    fixture = Application()
+    request.addfinalizer(fixture.destroy)
+    return fixture
 
-    def setUp(self):
-        self.app = Application()
-        self.base_url = "http://localhost/"
-        self.verificationErrors = []
-        self.accept_next_alert = True
 
-    def test_untitled(self):
-        self.app.open_home_page()
-        self.app.login("admin", "admin")
-
-    def tearDown(self):
-        self.app.destroy()
-        self.assertEqual([], self.verificationErrors)
+def test_untitled(app):
+    app.open_home_page()
+    app.login("admin", "admin")
 
 
 if __name__ == "__main__":
-    unittest.main()
+    pytest.main()
