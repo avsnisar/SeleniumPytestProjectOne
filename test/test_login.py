@@ -1,5 +1,5 @@
 import pytest
-from Application import Application
+from fixture.Application import Application
 
 
 @pytest.fixture
@@ -11,7 +11,8 @@ def app(request):
 
 def test_untitled(app):
     app.open_home_page()
-    app.login("admin", "admin")
+    app.session.login("admin", "admin")
+    app.session.logout()
 
 
 if __name__ == "__main__":
