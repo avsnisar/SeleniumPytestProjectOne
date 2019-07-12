@@ -10,12 +10,12 @@ class SessionHelper:
         wd = self.app.wd
         wd.get(self.app.base_url + "/php4dvd/")
 
-    def login(self, admin, password):
+    def login(self, username, password):
         wd = self.app.wd
         try:
             self.open_home_page()
             wd.find_element_by_id("username").clear()
-            wd.find_element_by_id("username").send_keys(admin)
+            wd.find_element_by_id("username").send_keys(username)
             wd.find_element_by_name("password").clear()
             wd.find_element_by_name("password").send_keys(password)
             wd.find_element_by_name("submit").click()
